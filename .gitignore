@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Node / tooling (if you add any later)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# Vercel
+.vercel
+
+# Build output
+dist/
+.cache/

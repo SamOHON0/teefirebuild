@@ -50,15 +50,15 @@
     onScroll();
 
     const toggle = nav.querySelector('.nav-toggle');
-    const menu = nav.querySelector('.nav-menu');
+    const menu = nav.querySelector('.nav-links');
     if (toggle && menu) {
       toggle.addEventListener('click', function () {
-        const open = nav.classList.toggle('is-open');
+        const open = menu.classList.toggle('open');
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
       menu.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () {
-          nav.classList.remove('is-open');
+          menu.classList.remove('open');
           toggle.setAttribute('aria-expanded', 'false');
         });
       });
@@ -67,16 +67,16 @@
 
   /* ---------- 3. IntersectionObserver reveals ---------- */
   function initReveals() {
-    const items = document.querySelectorAll('[data-reveal], [data-stagger] > *');
+    const items = document.querySelectorAll('[data-reveal], [data-stagger]');
     if (!items.length) return;
     if (prefersReducedMotion) {
-      items.forEach(function (el) { el.classList.add('is-visible'); });
+      items.forEach(function (el) { el.classList.add('in'); });
       return;
     }
     const io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('in');
           io.unobserve(entry.target);
         }
       });
@@ -96,11 +96,11 @@
     let timer = null;
 
     function go(n) {
-      slides[i].classList.remove('is-active');
-      if (dots[i]) dots[i].classList.remove('is-active');
+      slides[i].classList.remove('active');
+      if (dots[i]) dots[i].classList.remove('active');
       i = (n + slides.length) % slides.length;
-      slides[i].classList.add('is-active');
-      if (dots[i]) dots[i].classList.add('is-active');
+      slides[i].classList.add('active');
+      if (dots[i]) dots[i].classList.add('active');
     }
 
     function start() {
@@ -116,8 +116,8 @@
     hero.addEventListener('mouseenter', stop);
     hero.addEventListener('mouseleave', start);
 
-    slides[0].classList.add('is-active');
-    if (dots[0]) dots[0].classList.add('is-active');
+    slides[0].classList.add('active');
+    if (dots[0]) dots[0].classList.add('active');
     if (!prefersReducedMotion) start();
   }
 
@@ -149,7 +149,7 @@
         if (entry.isIntersecting) {
           const id = entry.target.id;
           links.forEach(function (l) {
-            l.classList.toggle('is-active', l.getAttribute('href') === '#' + id);
+            l.classList.toggle('active', l.getAttribute('href') === '#' + id);
           });
         }
       });
@@ -168,8 +168,8 @@
 
     chips.forEach(function (chip) {
       chip.addEventListener('click', function () {
-        chips.forEach(function (c) { c.classList.remove('is-active'); });
-        chip.classList.add('is-active');
+        chips.forEach(function (c) { c.classList.remove('active'); });
+        chip.classList.add('active');
         const f = chip.getAttribute('data-filter');
         cards.forEach(function (card) {
           const s = card.getAttribute('data-sector');

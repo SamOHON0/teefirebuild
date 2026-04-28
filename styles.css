@@ -951,18 +951,29 @@ section { padding: 6.5rem 3rem; position: relative; }
   display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
 }
 
-/* Dark CTA variant */
+/* Dark CTA variant — must beat .cta-section.alt .cta-banner specificity */
+.cta-section .cta-banner.dark,
+.cta-section.alt .cta-banner.dark,
 .cta-banner.dark {
   background: var(--navy); color: var(--white); border-color: rgba(255,255,255,0.08);
 }
 .cta-banner.dark .section-title { color: var(--white); }
-.cta-banner.dark .section-desc { color: rgba(255,255,255,0.66); }
+.cta-banner.dark .section-desc { color: rgba(255,255,255,0.78); }
+.cta-banner.dark p { color: rgba(255,255,255,0.78); }
 .cta-banner.dark::before {
   background:
     radial-gradient(ellipse 55% 60% at 50% 40%, rgba(212, 53, 35, 0.18), transparent),
     radial-gradient(ellipse 40% 50% at 15% 90%, rgba(212, 53, 35, 0.08), transparent 60%);
 }
-.cta-banner.dark .btn-secondary { color: rgba(255,255,255,0.92); }
+.cta-banner.dark .btn-secondary {
+  color: rgba(255,255,255,0.92);
+  border-color: rgba(255,255,255,0.25);
+}
+.cta-banner.dark .btn-secondary:hover {
+  color: var(--white);
+  border-color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.05);
+}
 
 /* =========================================================
    FOOTER
